@@ -5,7 +5,7 @@ DOWN_DIRECTION = 'v'
 LEFT_DIRECTION = '<'
 RIGHT_DIRECTION = '>'
 
-def get_visited_houses_count(directions):
+def get_visited_houses(directions):
     current_coordinate = (0, 0)
     visited_coordinates = {
         current_coordinate: 1
@@ -26,7 +26,23 @@ def get_visited_houses_count(directions):
         else:
             visited_coordinates[current_coordinate] = 1
 
-    return len(visited_coordinates)
+    return visited_coordinates
+
+def get_houses_visited_multiple_sleighs(directions, santa_instances):
+    santa_x_directions = []
+    santa_x_visited_houses = []
+    for idx in range(0, santa_instances):
+        santa_x_directions.append('')
+        santa_x_visited_houses = {}
+
+    for idx in range(0, len(directions)):
+        santa_x_directions[idx % santa_instances] += directions[idx]
+
+    for idx in range(0, santa_instances):
+        santa_x_directions.append(0)
+        santa_x_visited_houses[idx] = get_visited_houses(santa_x_directions[idx])
+        santa_x_visited_houses[0].update(santa_x_visited_houses[idx])
+    return santa_x_visited_houses[0]
 
 def read_input(path):
     with open(path) as f:
@@ -35,4 +51,6 @@ def read_input(path):
 
 if __name__ == '__main__':
     directions = read_input(INPUT_PATH)
-    print(f'Number of houses santa visited: {get_visited_houses_count(directions)}')
+    print(f'Number of houses santa visited with 1 santa: {len(get_visited_houses(directions))}')
+    combined_houses = get_houses_visited_multiple_sleighs(directions, 2)
+    print(f"Number of houses visited with 2 santas: {len(combined_houses)}")
