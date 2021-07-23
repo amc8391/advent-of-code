@@ -1,3 +1,8 @@
+"""
+With thanks to Nick Mattis for helping me achieve my goals in life.
+Also for helping fix my import issues
+"""
+
 INPUT_PATH = '2015/day2/input.txt'
 
 class Present:
