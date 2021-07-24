@@ -1,7 +1,7 @@
 import solution
 import unittest
 
-class Day1SolutionTests(unittest.TestCase):
+class Day3SolutionTests(unittest.TestCase):
     def test_directions(self):
         input_directions = '>'
         self.assertEqual(len(solution.get_visited_houses(input_directions)), 2)

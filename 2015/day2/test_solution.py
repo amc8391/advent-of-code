@@ -1,7 +1,7 @@
 import solution
 import unittest
 
-class Day1SolutionTests(unittest.TestCase):
+class Day2SolutionTests(unittest.TestCase):
     def test_example_packages_part1(self):
         presents = [solution.dimensions_to_present('2x3x4')]
         self.assertEqual(solution.get_total_wrapping_paper_needed(presents), 58)
