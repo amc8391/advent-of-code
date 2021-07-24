@@ -18,4 +18,5 @@ def read_input(path):
 
 if __name__ == '__main__':
     input_prefix = read_input(INPUT_PATH)
-    print(f'MD5 suffix: {get_zeroed_md5(input_prefix, 5)}')
+    print(f'MD5 suffix for 5 zero hash: {get_zeroed_md5(input_prefix, 5)}')
+    print(f'MD5 suffix for 6 zero hash: {get_zeroed_md5(input_prefix, 6)}')
