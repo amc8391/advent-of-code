@@ -28,7 +28,7 @@ def has_spaced_duplicate_char(input_string):
     '''
     for char_idx in range(0, len(input_string) - 2):
         substr = input_string[char_idx : char_idx + 3]
-        if substr[0] == substr[2] and substr[0] != substr[1]:
+        if substr[0] == substr[2]:
             return True
     return False
 
