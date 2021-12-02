@@ -14,15 +14,35 @@ const countDepthIncreases = inputDepths => {
     });
     
     return increaseCount;
-}
+};
+
+const separateMeasurementWindows = (inputDepths, windowSize) => {
+    const windowedValues = [];
+    const inputsLength = inputDepths.length;
+
+    let idx = 0;
+    while (idx + 2 < inputsLength) {
+        const win = inputDepths.slice(idx, idx + windowSize);
+        const sum = win.reduce((prev, next) => prev + next);
+        // console.debug('window', win);
+        // console.debug('window sum', sum);
+        windowedValues.push(sum);
+        idx += 1;
+    }
+    
+    // console.debug(windowedValues.length);
+
+    return windowedValues;
+};
 
 const readInput = inputPath => {
     return fs.readFileSync(inputPath, 'utf-8').split('\n').map(depth => parseInt(depth));
-}
+};
 
 const main = () => {
     const inputDepths = readInput(INPUT_PATH);
     console.log('Number of depth increases: ', countDepthIncreases(inputDepths));
-}
+    console.log('Number of depth increases (separated with window of size 3): ', countDepthIncreases(separateMeasurementWindows(inputDepths, 3)));
+};
 
 main();
