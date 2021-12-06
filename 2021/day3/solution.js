@@ -1,6 +1,10 @@
 
 const fs = require('fs');
 
+const utils = require('./utils');
+const part1 = require('./solution-part-1');
+const part2 = require('./solution-part-2');
+
 const INPUT_PATH = './2021/day3/input.txt';
 
 const readInput = inputPath => {
@@ -10,89 +14,36 @@ const readInput = inputPath => {
     );
 };
 
-const transpose2dArray = grid => {
-    const transposedGrid = [];
-
-    const colCount = grid[0].length;
-    for (let i = 0; i < colCount; i++) {
-        transposedGrid.push([]);
-    }
-
-    grid.forEach((row) => {
-        row.forEach((cell, colIdx) => {
-            transposedGrid[colIdx].push(cell)
-        });
-    });
-    return transposedGrid;
-}
-
-const getEpsilonRate = transposedReports => {
-    const columnsToRates = transposedReports.map(get1dArrayFrequencyMap);
-
-    console.log('Frequency Maps:', columnsToRates);
-
-    const mostFreqVals = columnsToRates.map(frequencies => 
-        Object.entries(frequencies)
-            .sort((freq1, freq2) => freq1[1] - freq2[1])
-            [0][0]
-    );
-
-    return mostFreqVals.join('');
-};
-
-const getGammaRate = epsilonRate => {
-    return epsilonRate.split('').map(char => {
-        const inverseMap = {
-            '0': 1,
-            '1': 0
-        };
-        return inverseMap[char];
-    }).join('');
-}
-
-const binStringToDec = binString => {
-    let decInt = 0;
-    binString.split('').forEach((char, charIdx) => {
-            const exponent = (binString.length - 1) - charIdx;
-            const binMultiplier = parseInt(char);
-            const toAdd =  binMultiplier * Math.pow(binMultiplier * 2, exponent);
-            console.log('char: ', char, 'index: ', charIdx, 'exponent: ', exponent, 'result', toAdd);
-            decInt += toAdd;
-        }
-    );
-    return decInt;
-}
-
-const get1dArrayFrequencyMap = inputValues => {
-    const freqMap = {};
-    inputValues.forEach(val => {
-        if (freqMap[val] === undefined) {
-            freqMap[val] = 1;
-        } else {
-            freqMap[val] += 1;
-        }
-    });
-    return freqMap;
-};
-
 const main = () => {
     const inputReports = readInput(INPUT_PATH);
 
-    // console.log(inputReports);
-    // console.log('Transposed input', transpose2dArray(inputReports));
-    const transposedReports = transpose2dArray(inputReports);
+    const transposedReports = utils.transpose2dArray(inputReports);
+    const colFrequencyMaps = transposedReports.map(utils.get1dArrayFrequencyMap);
+    console.log('Frequency Maps:', colFrequencyMaps);
 
-    const epsilonRate = getEpsilonRate(transposedReports);
-    const epsilonDec = binStringToDec(epsilonRate);
+    const epsilonRate = part1.getEpsilonRate(colFrequencyMaps);
+    const epsilonDec = utils.binStringToDec(epsilonRate);
     console.log('Epsilon Rate (Bin):', epsilonRate);
-    console.log('Epsilon Rate (Dec)', epsilonDec);
+    console.log('Epsilon Rate (Dec):', epsilonDec);
 
-    const gammaRate = getGammaRate(epsilonRate);
-    const gammaDec = binStringToDec(gammaRate);
+    const gammaRate = part1.getGammaRate(epsilonRate);
+    const gammaDec = utils.binStringToDec(gammaRate);
     console.log('Gamma Rate (Bin):', gammaRate);
-    console.log('Gamma Rate (Dec)', gammaDec);
+    console.log('Gamma Rate (Dec):', gammaDec);
 
-    console.log('Multiplied: ', epsilonDec * gammaDec);
+    console.log('Epsilon * Gamma:', epsilonDec * gammaDec);
+    
+    const oxygenRating = part2.getOxygenRating(inputReports);
+    const oxygenRatingDec = utils.binStringToDec(oxygenRating);
+    console.log('Oxygen Generator Rating (Bin):', oxygenRating);
+    console.log('Oxygen Generator Rating (Dec):', oxygenRatingDec);
+
+    const co2Rating = part2.getCo2Rating(inputReports);
+    const co2RatingDec = utils.binStringToDec(co2Rating);
+    console.log('CO2 Scrubber Rating (Bin):', co2Rating);
+    console.log('CO2 Scrubber Rating (Dec):', co2RatingDec);
+
+    console.log('Oxygen * CO2:', oxygenRatingDec * co2RatingDec);
 };
 
 module.exports = {
