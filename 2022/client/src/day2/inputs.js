@@ -1,8 +1,17 @@
-const sample = `A Y
+const sample = {
+    label: 'Sample Input',
+    part1: 15,
+    part2: 12,
+    value: `A Y
 B X
-C Z`;
+C Z`,
+};
 
-const input = `B Y
+const input = {
+    label: 'Actual Input',
+    part1: '10404',
+    part2: '10334',
+    value: `B Y
 A Z
 C Z
 A Y
@@ -2502,8 +2511,11 @@ B Y
 A Y
 B X
 B Y`
+}
 
-module.exports = {
+const inputs = [
     sample,
     input
-};
+]
+
+export default inputs;

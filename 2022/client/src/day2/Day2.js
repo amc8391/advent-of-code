@@ -1,13 +1,14 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextareaAutosize, Typography } from "@mui/material";
+import { TextareaAutosize, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import { input, sample } from './inputs';
+import inputs from './inputs';
+import ResultsTable from "./ResultsTable";
 import { main } from './solution';
 
 function Day2() {
     return (
         <div>
             <h1>--- Day 2: Rock Paper Scissors ---</h1>
-            <Container class='prompt'>
+            <Container className='prompt'>
                 <Typography>
                     The Elves begin to set up camp on the beach. To decide whose tent gets to be closest to the snack storage, a giant Rock Paper Scissors tournament is already in progress.
                 </Typography>
@@ -30,7 +31,7 @@ function Day2() {
                     For example, suppose you were given the following strategy guide:
                 </Typography>
 
-                <Container><TextareaAutosize className="input-sample" readOnly value={sample}>
+                <Container><TextareaAutosize className="input-sample" readOnly value={inputs[0].value}>
                 </TextareaAutosize></Container>
 
                 <Typography>
@@ -50,63 +51,38 @@ function Day2() {
                 </Typography>
             </Container>
 
-            <Container className="solution">
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell align="right">Output</TableCell>
-                                <TableCell align="right">Expected Output</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">Sample Input</TableCell>
-                                <TableCell align="right">{main(sample).part1}</TableCell>
-                                <TableCell align="right">24000</TableCell>
-                            </TableRow>
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">Actual Input</TableCell>
-                                <TableCell align="right">{main(input).part1}</TableCell>
-                                <TableCell align="right">?</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Container>
+            <ResultsTable inputs={inputs} main={main} part='part1' />
 
             <Container className="prompt">
                 <Typography>
                     --- Part Two ---
                 </Typography>
+                <Typography>
+                    The Elf finishes helping with the tent and sneaks back over to you. "Anyway, the second column says how the round needs to end: X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win. Good luck!"
+                </Typography>
+
+                <Typography>
+                    The total score is still calculated in the same way, but now you need to figure out what shape to choose so the round ends as indicated. The example above now goes like this:
+                </Typography>
+                <Typography>
+                    In the first round, your opponent will choose Rock (A), and you need the round to end in a draw (Y), so you also choose Rock. This gives you a score of 1 + 3 = 4.
+                </Typography>
+                <Typography>
+                    In the second round, your opponent will choose Paper (B), and you choose Rock so you lose (X) with a score of 1 + 0 = 1.
+                </Typography>
+                <Typography>
+                    In the third round, you will defeat your opponent's Scissors with Rock for a score of 1 + 6 = 7.
+                </Typography>
+                <Typography>
+                    Now that you're correctly decrypting the ultra top secret strategy guide, you would get a total score of 12.
+                </Typography>
+
+                <Typography>
+                    Following the Elf's instructions for the second column, what would your total score be if everything goes exactly according to your strategy guide?
+                </Typography>
             </Container>
 
-            <Container className="solution">
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell align="right">Output</TableCell>
-                                <TableCell align="right">Expected Output</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">Sample Input</TableCell>
-                                <TableCell align="right">{main(sample).part2}</TableCell>
-                                <TableCell align="right">45000</TableCell>
-                            </TableRow>
-                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">Actual Input</TableCell>
-                                <TableCell align="right">{main(input).part2}</TableCell>
-                                <TableCell align="right">?</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Container>
+            <ResultsTable inputs={inputs} main={main} part='part2' />
         </div>
     );
 };
