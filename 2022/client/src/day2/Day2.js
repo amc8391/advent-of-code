@@ -1,10 +1,21 @@
 import { TextareaAutosize, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import inputs from './inputs';
-import ResultsTable from "./ResultsTable";
+import fileInputs from './inputs';
+import ResultsTable from "../shared/ResultsTable";
 import { main } from './solution';
+import { useState } from "react";
 
 function Day2() {
+    const [
+        inputs,
+        // setInputs
+    ] = useState(fileInputs.map(input => {
+        const results = main(input.value);
+        input.part1Result = results.part1;
+        input.part2Result = results.part2;
+        return input;
+    }));
+    
     return (
         <div>
             <h1>--- Day 2: Rock Paper Scissors ---</h1>
@@ -51,7 +62,7 @@ function Day2() {
                 </Typography>
             </Container>
 
-            <ResultsTable inputs={inputs} main={main} part='part1' />
+            <ResultsTable inputs={inputs} part='part1' />
 
             <Container className="prompt">
                 <Typography>

@@ -32,8 +32,8 @@ const main = input => {
     const part1Games = deepCopy(games).map(game => determineSelfPart1(determineOpp(game)));
     const part2Games = deepCopy(games).map(game => determineSelfPart2(determineOpp(game)));
 
-    part1Games.forEach(printGame);
-    part2Games.forEach(printGame);
+    // part1Games.forEach(printGame);
+    // part2Games.forEach(printGame);
 
     const totalScorePart1 = part1Games.reduce((accumulator, game) => accumulator + scoreGame(game), 0) 
     const totalScorePart2 = part2Games.reduce((accumulator, game) => accumulator + scoreGame(game), 0) 

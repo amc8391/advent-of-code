@@ -13,11 +13,11 @@ function ResultsTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.inputs.map(input => (
-              <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            {props.inputs.map((input, idx) => (
+              <TableRow key={'row' + idx} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">{input.label}</TableCell>
-                <TableCell align="right">{props.main(input.value)[props.part]}</TableCell>
-                <TableCell align="right">{input[props.part]}</TableCell>
+                <TableCell align="right">{input[props.part + 'Result']}</TableCell>
+                <TableCell align="right">{input[props.part + 'Expected']}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,7 +1,9 @@
 const sample = {
     label: 'Sample Input',
-    part1: 15,
-    part2: 12,
+    part1Expected: 15,
+    part1Result: undefined,
+    part2Expected: 12,
+    part2Result: undefined,
     value: `A Y
 B X
 C Z`,
@@ -9,8 +11,10 @@ C Z`,
 
 const input = {
     label: 'Actual Input',
-    part1: '10404',
-    part2: '10334',
+    part1Expected: '10404',
+    part1Result: undefined,
+    part2Expected: '10334',
+    part2Result: undefined,
     value: `B Y
 A Z
 C Z

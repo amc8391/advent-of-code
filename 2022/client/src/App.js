@@ -2,10 +2,12 @@ import './App.css';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Container, Typography } from '@mui/material';
 import Day1 from './day1/Day1';
 import Day2 from './day2/Day2';
+import Day3 from './day3/Day3';
 
 const dayMappings = [
   { title: 'Day 1', Component: Day1 },
   { title: 'Day 2', Component: Day2 },
+  { title: 'Day 3', Component: Day3 },
 ]
 
 function App() {
