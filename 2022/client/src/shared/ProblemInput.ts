@@ -1,9 +1,9 @@
 type ProblemInput = {
   label: string;
-  part1Expected: number;
-  part1Result?: number;
-  part2Expected?: any;
-  part2Result?: number;
+  part1Expected: number | string;
+  part1Result?: number | string;
+  part2Expected?: number | string;
+  part2Result?: number | string;
   value: string;
 }
 

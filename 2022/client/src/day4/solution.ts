@@ -24,12 +24,7 @@ const pairsPartiallyOverlap = (sectionPair: SectionRange[]): boolean => {
 
 const pairsCompletelyOverlap = (sectionPair: SectionRange[]): boolean => {
   sectionPair.sort((a, b) => b.getSize() - a.getSize());
-
-  if (sectionPair[0].start <= sectionPair[1].start && sectionPair[0].end >= sectionPair[1].end) {
-    return true;
-  }
-  
-  return false;
+  return sectionPair[0].start <= sectionPair[1].start && sectionPair[0].end >= sectionPair[1].end;
 };
 
 export const main = (input: string): SolutionOutput => {
