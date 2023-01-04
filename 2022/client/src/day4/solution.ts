@@ -17,8 +17,12 @@ const parseInput = (input: string) : SectionRange[][] => input
   .split('\n')
   .map(line => line.split(',').map(section => new SectionRange(section)));
 
+const pairsPartiallyOverlap = (sectionPair: SectionRange[]): boolean => {
+  sectionPair.sort((a, b) => a.start - b.start);
+  return sectionPair[0].end >= sectionPair[1].start;
+};
 
-const pairsOverlap = (sectionPair: SectionRange[]): boolean => {
+const pairsCompletelyOverlap = (sectionPair: SectionRange[]): boolean => {
   sectionPair.sort((a, b) => b.getSize() - a.getSize());
 
   if (sectionPair[0].start <= sectionPair[1].start && sectionPair[0].end >= sectionPair[1].end) {
@@ -30,10 +34,11 @@ const pairsOverlap = (sectionPair: SectionRange[]): boolean => {
 
 export const main = (input: string): SolutionOutput => {
   const elfSections = parseInput(input);
-  const overlappingPairs = elfSections.filter(pairsOverlap);
+  const overlappingPairs = elfSections.filter(pairsCompletelyOverlap);
+  const partiallyOverlappingPairs = elfSections.filter(pairsPartiallyOverlap);
 
   return {
     part1: overlappingPairs.length,
-    part2: -1,
+    part2: partiallyOverlappingPairs.length,
   };
 };
