@@ -82,7 +82,6 @@ const determineSelfPart2 = (game) => {
     return game;
 }
 
-// class Game 
 const scoreGame = game => {
     let score = 0;
 
@@ -101,6 +100,7 @@ const scoreGame = game => {
     return score;
 };
 
+// eslint-disable-next-line no-unused-vars
 const printGame = game => {
     console.log(
         'Game Goal: ' + game.gameGoal + '\n' +
