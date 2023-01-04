@@ -4,12 +4,7 @@ import fileInputs from './inputs';
 import ResultsTable from '../shared/ResultsTable';
 import { main } from './solution';
 import React, { useState } from "react";
-
-const typographize = (str: string): JSX.Element[] =>
-  str.split('\n')
-    .map((line: string, idx: number) => (
-      <Typography className="Typography" key={'line' + idx}>{line}</Typography>
-    ));
+import { typographize } from "../shared/utils";
 
 function Day3() {
   const [
