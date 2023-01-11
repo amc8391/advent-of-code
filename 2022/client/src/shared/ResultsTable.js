@@ -1,3 +1,4 @@
+import './ResultsTable.css';
 import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 function ResultsTable(props) {
@@ -14,7 +15,11 @@ function ResultsTable(props) {
           </TableHead>
           <TableBody>
             {props.inputs.map((input, idx) => (
-              <TableRow key={'row' + idx} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow
+                key={'row' + idx}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                className={input[props.part + 'Result'] === input[props.part + 'Expected'] ? 'right' : 'wrong'}
+              >
                 <TableCell component="th" scope="row">{input.label}</TableCell>
                 {/* TODO: remove props.part + 'Result', very not typescript */}
                 <TableCell align="right">{input[props.part + 'Result'] || '?'}</TableCell> 
