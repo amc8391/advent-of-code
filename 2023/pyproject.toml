@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "2023"
+version = "0.1.0"
+description = ""
+authors = ["Alex Christodoulou <christodoulou.am@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyspark = "^3.5.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
